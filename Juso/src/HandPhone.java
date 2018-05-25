@@ -25,7 +25,7 @@ public class HandPhone {
 
 		Scanner sc = new Scanner(System.in);
 		String select = "";
-		System.out.println("\n## Ä£±¸ ¿¬¶ôÃ³ °ü¸® ## \n");
+		System.out.println("\n## ì¹œêµ¬ ì—°ë½ì²˜ ê´€ë¦¬ ## \n");
 
 		while (select != "4") {
 			print_menu();
@@ -44,16 +44,16 @@ public class HandPhone {
 			case "4":
 				return;
 			default:
-				System.out.println("\n Àß¸ø ÀÔ·ÂÇß¾î¿ä. ´Ù½Ã ¼±ÅÃÇÏ¼¼¿ä.\n");
+				System.out.println("\n ìž˜ëª» ìž…ë ¥í–ˆì–´ìš”. ë‹¤ì‹œ ì„ íƒí•˜ì„¸ìš”.\n");
 			}
 		}
 	}
 
 	static void print_menu() {
-		System.out.println("1. ¿¬¶ôÃ³ Ãâ·Â");
-		System.out.println("2. ¿¬¶ôÃ³ µî·Ï");
-		System.out.println("3. ¿¬¶ôÃ³ »èÁ¦");
-		System.out.println("4. ³¡³»±â");
+		System.out.println("1. ì—°ë½ì²˜ ì¶œë ¥");
+		System.out.println("2. ì—°ë½ì²˜ ë“±ë¡");
+		System.out.println("3. ì—°ë½ì²˜ ì‚­ì œ");
+		System.out.println("4. ëë‚´ê¸°");
 	}
 
 	static void view_juso() {
@@ -83,11 +83,11 @@ public class HandPhone {
 		String phone;
 
 		Scanner sc = new Scanner(System.in);
-		System.out.println("ÀÌ¸§À» ÀÔ·Â ==> ");
+		System.out.println("ì´ë¦„ì„ ìž…ë ¥ ==> ");
 		name = sc.next();
-		System.out.println("³ªÀÌ¸¦ ÀÔ·Â ==> ");
+		System.out.println("ë‚˜ì´ë¥¼ ìž…ë ¥ ==> ");
 		age = sc.next();
-		System.out.println("ÀüÈ­¹øÈ£¸¦ ÀÔ·Â ==> ");
+		System.out.println("ì „í™”ë²ˆí˜¸ë¥¼ ìž…ë ¥ ==> ");
 		phone = sc.next();
 
 		try {
@@ -107,9 +107,9 @@ public class HandPhone {
 		
 		int position;
 		Scanner sc = new Scanner(System.in);
-		System.out.println("»èÁ¦ÇÒ Çà ¹øÈ£´Â ?");
+		System.out.println("ì‚­ì œí•  í–‰ ë²ˆí˜¸ëŠ” ?");
 		
-		position = sc.nextInt(1;
+		position = sc.nextInt()-1;
 		
 		File file = new File(HandPhone.fname);
 		String dummy = "";
