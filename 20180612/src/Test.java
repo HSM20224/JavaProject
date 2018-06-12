@@ -16,7 +16,7 @@ public class Test extends JFrame {
 	
 		String columnNames[] = {"이름","국어점수","영어점수","수학점수","총점","평균"};
 
-		Object rowData[][] = {};
+		Object rowData[][] = {{"양정현",11,11,11,33,11}};
 		
 		DefaultTableModel defaultTableModel = new DefaultTableModel(rowData, columnNames);
 		JTable jTable = new JTable(rowData, columnNames);
@@ -77,6 +77,8 @@ public class Test extends JFrame {
 				
 				Object [] temporaryObject = {name, kor, eng, math, sum, Average};
 				defaultTableModel.addRow(temporaryObject);
+				defaultTableModel.fireTableDataChanged();
+				panel2.add(jsp);
 			}
 			
 		});
