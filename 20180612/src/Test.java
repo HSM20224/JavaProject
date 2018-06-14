@@ -4,14 +4,18 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import java.util.Vector;
 
 import javax.swing.*;
 import javax.swing.border.*;
 import javax.swing.table.*;
 
 public class Test extends JFrame {
+	static int row = 0;
 	public Test (){
-		
 		int key = 0;
 	
 		String columnNames[] = {"이름","국어점수","영어점수","수학점수","총점","평균"};
@@ -19,7 +23,7 @@ public class Test extends JFrame {
 		Object rowData[][] = {{"양정현",11,11,11,33,11}};
 		
 		DefaultTableModel defaultTableModel = new DefaultTableModel(rowData, columnNames);
-		JTable jTable = new JTable(rowData, columnNames);
+		JTable jTable = new JTable(defaultTableModel);
 		JScrollPane jsp = new JScrollPane(jTable);
 		
 		jsp.setBorder(BorderFactory.createLineBorder(Color.black));
@@ -78,10 +82,86 @@ public class Test extends JFrame {
 				defaultTableModel.addRow(temporaryObject);
 				defaultTableModel.fireTableDataChanged();
 			}
-			
+		});
+		
+
+		removeButton.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int row = jTable.getSelectedRow();
+				
+				if (row == -1){return;}
+				
+				defaultTableModel.removeRow(row);
+				defaultTableModel.fireTableDataChanged();
+			}
+		});
+		
+		jTable.addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				int ro = jTable.getSelectedRow();
+				row = ro;
+				
+				int column = jTable.getColumnCount();
+				if (row == -1){return;}
+				
+				nameField.setText(String.valueOf(jTable.getValueAt(row, 0)));
+				korField.setText(String.valueOf(jTable.getValueAt(row, 1)));
+				engField.setText(String.valueOf(jTable.getValueAt(row, 2)));
+				mathField.setText(String.valueOf(jTable.getValueAt(row, 3)));
+					
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				return;
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				return;
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				return;
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				return;
+			}			
+		});
+		
+		modifyButton.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String name = nameField.getText();
+				int kor = Integer.parseInt(korField.getText());
+				int eng = Integer.parseInt(engField.getText());
+				int math = Integer.parseInt(mathField.getText());
+				int sum = kor+eng+math;
+				int Average = (int)sum/3;
+				
+				Object[] obj = {name,kor,eng,math,sum,Average};
+				
+				for(int i = 0; i < 6; i++){
+					jTable.setValueAt(obj[i], row, i);
+				}
+				
+				defaultTableModel.fireTableDataChanged();
+			}
 		});
 		
 		
+
 		panel1.add(nameLabel);
 		panel1.add(nameField);
 		panel1.add(addButton);
