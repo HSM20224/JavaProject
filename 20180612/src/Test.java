@@ -22,10 +22,12 @@ public class Test extends JFrame {
 		JTable jTable = new JTable(rowData, columnNames);
 		JScrollPane jsp = new JScrollPane(jTable);
 		
+		jsp.setBorder(BorderFactory.createLineBorder(Color.black));
+		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("己利 包府 橇肺弊伐");
-		setSize(950,300);
+		setBounds(450,250,950,300);
 		setLayout(new GridLayout(0,2));
 		
 		JPanel panel1 = new JPanel(); 
@@ -61,9 +63,6 @@ public class Test extends JFrame {
 		
 		JTextField mathField = new JTextField(10);
 		
-		JPanel panel2 = new JPanel();
-		panel2.setBorder(BorderFactory.createLineBorder(Color.black));
-		panel2.setLayout(new FlowLayout());
 		
 		addButton.addActionListener(new ActionListener(){
 			@Override
@@ -78,7 +77,6 @@ public class Test extends JFrame {
 				Object [] temporaryObject = {name, kor, eng, math, sum, Average};
 				defaultTableModel.addRow(temporaryObject);
 				defaultTableModel.fireTableDataChanged();
-				panel2.add(jsp);
 			}
 			
 		});
@@ -96,10 +94,8 @@ public class Test extends JFrame {
 		panel1.add(mathLabel);
 		panel1.add(mathField);
 		
-		panel2.add(jsp);
-		
 		add(panel1);
-		add(panel2);
+		add(jsp);
 		
 		setVisible(true);
 	}
