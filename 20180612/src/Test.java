@@ -32,7 +32,7 @@ public class Test extends JFrame {
 		JScrollPane jsp = new JScrollPane(jTable);
 		jsp.setBorder(BorderFactory.createLineBorder(Color.black));
 		jsp.setBounds(410, 10, 760, 260);
-		 
+		  
 		JLabel nameLabel = new JLabel("¿Ã∏ß");
 		nameLabel.setBorder(new BevelBorder(BevelBorder.RAISED));
 		nameLabel.setHorizontalAlignment(SwingConstants.CENTER);

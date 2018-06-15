@@ -38,5 +38,5 @@ public class Score {
 	public void setAverage(int average) {
 		this.average = average;
 	}
-	
+	 
 }
