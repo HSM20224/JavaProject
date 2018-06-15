@@ -12,7 +12,7 @@ import javax.swing.border.*;
 import javax.swing.table.*;
 
 public class Test extends JFrame {
-	static int row = 0;
+	int row = 0;
 	
 
 	String columnNames[] = {"이름","국어점수","영어점수","수학점수","총점","평균"};

@@ -1,8 +1,7 @@
 
 public class Score {
 	private String name;
-	private int kor,eng,math,sum,average;
-	
+	private int kor, eng, math, sum, average;
 	public String getName() {
 		return name;
 	}
@@ -37,7 +36,7 @@ public class Score {
 		return average;
 	}
 	public void setAverage(int average) {
-		average = average;
+		this.average = average;
 	}
-
+	
 }
