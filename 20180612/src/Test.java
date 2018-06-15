@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.sql.*;
+import java.util.Vector;
 
 import javax.swing.*;
 import javax.swing.border.*;
@@ -14,20 +16,31 @@ import javax.swing.table.*;
 public class Test extends JFrame {
 	int row = 0;
 	
-
-	String columnNames[] = {"이름","국어점수","영어점수","수학점수","총점","평균"};
-	Object rowData[][] = {};
-
+	//{"이름","국어점수","영어점수","수학점수","총점","평균"}
+	 
+	
+	 
 	public Test (){
+		Vector<String> columnNames = new Vector<String>();
+		 columnNames.add("이름");
+		 columnNames.addElement("국어점수");
+		 columnNames.addElement("영어점수");
+		 columnNames.addElement("수학점수");
+		 columnNames.addElement("총합");
+		 columnNames.addElement("평균");
 		
-		Score score = new Score();
+		 
+		ScoreDAO scoreDAO = new ScoreDAO();
+		ScoreDTO scoreDTO = new ScoreDTO();
+		
+		scoreDAO.getConn();
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("성적 관리프로그램");
 		setBounds(450,250,1200,320);
 		setLayout(null);
 		
-		DefaultTableModel defaultTableModel = new DefaultTableModel(rowData, columnNames);
+		DefaultTableModel defaultTableModel = new DefaultTableModel(scoreDAO.getScore(), columnNames);
 		JTable jTable = new JTable(defaultTableModel);
 		JScrollPane jsp = new JScrollPane(jTable);
 		jsp.setBorder(BorderFactory.createLineBorder(Color.black));
@@ -81,20 +94,22 @@ public class Test extends JFrame {
 		addButton.addActionListener(new ActionListener(){
  			@Override
  			public void actionPerformed(ActionEvent e) {
- 				score.setName(nameField.getText());
- 				score.setKor(Integer.parseInt(korField.getText()));
- 				score.setEng(Integer.parseInt(engField.getText()));
- 				score.setMath(Integer.parseInt(mathField.getText()));
- 				score.setSum(score.getKor()+score.getEng()+score.getMath());
- 				score.setAverage((int)score.getSum()/3);
+ 				scoreDTO.setName(nameField.getText());
+ 				scoreDTO.setKor(Integer.parseInt(korField.getText()));
+ 				scoreDTO.setEng(Integer.parseInt(engField.getText()));
+ 				scoreDTO.setMath(Integer.parseInt(mathField.getText()));
+ 				scoreDTO.setSum(scoreDTO.getKor()+scoreDTO.getEng()+scoreDTO.getMath());
+ 				scoreDTO.setAverage((int)scoreDTO.getSum()/3);
  				
- 				Object [] temporaryObject = {score.getName(), score.getKor(),score.getEng(), score.getMath(), score.getSum(), score.getAverage() };
- 				defaultTableModel.addRow(temporaryObject);
+ 				scoreDAO.insertScore(scoreDTO);
  				nameField.setText("");
 				korField.setText("");
 				engField.setText("");
 				mathField.setText("");
+				Vector res = scoreDAO.getScore();
+				defaultTableModel.setDataVector(res, columnNames);
  				defaultTableModel.fireTableDataChanged();
+ 				jTable.setModel(defaultTableModel);
  			}
 			
 		});
@@ -107,12 +122,16 @@ public class Test extends JFrame {
 				
 				if (row == -1){return;}
 				
-				defaultTableModel.removeRow(row);
+				scoreDAO.deleteScore(scoreDTO);
+				
 				nameField.setText("");
 				korField.setText("");
 				engField.setText("");
 				mathField.setText("");
+				Vector res = scoreDAO.getScore();
+				defaultTableModel.setDataVector(res, columnNames);
 				defaultTableModel.fireTableDataChanged();
+				jTable.setModel(defaultTableModel);
 			}
 		});
 		
@@ -126,6 +145,10 @@ public class Test extends JFrame {
 				
 				int column = jTable.getColumnCount();
 				if (row == -1){return;}
+				
+				
+				String n = (String) defaultTableModel.getValueAt(row, 0);
+				scoreDTO.setName(n);
 				
 				nameField.setText(String.valueOf(jTable.getValueAt(row, 0)));
 				korField.setText(String.valueOf(jTable.getValueAt(row, 1)));
@@ -161,23 +184,23 @@ public class Test extends JFrame {
 		modifyButton.addActionListener(new ActionListener(){
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				score.setName(nameField.getText());
- 				score.setKor(Integer.parseInt(korField.getText()));
- 				score.setEng(Integer.parseInt(engField.getText()));
- 				score.setMath(Integer.parseInt(mathField.getText()));
- 				score.setSum(score.getKor()+score.getEng()+score.getMath());
- 				score.setAverage((int)score.getSum()/3);
+				scoreDTO.setName(nameField.getText());
+ 				scoreDTO.setKor(Integer.parseInt(korField.getText()));
+ 				scoreDTO.setEng(Integer.parseInt(engField.getText()));
+ 				scoreDTO.setMath(Integer.parseInt(mathField.getText()));
+ 				scoreDTO.setSum(scoreDTO.getKor()+scoreDTO.getEng()+scoreDTO.getMath());
+ 				scoreDTO.setAverage((int)scoreDTO.getSum()/3);
  				
- 				Object [] temporaryObject = {score.getName(), score.getKor(),score.getEng(), score.getMath(), score.getSum(), score.getAverage() };
-				
-				for(int i = 0; i < 6; i++){
-					jTable.setValueAt(temporaryObject[i], row, i);
-				}
+ 				scoreDAO.updateScore(scoreDTO);
+ 				
 				nameField.setText("");
 				korField.setText("");
 				engField.setText("");
 				mathField.setText("");
+				Vector res = scoreDAO.getScore();
+				defaultTableModel.setDataVector(res, columnNames);
 				defaultTableModel.fireTableDataChanged();
+				jTable.setModel(defaultTableModel);
 				
 			}
  		});
@@ -205,5 +228,50 @@ public class Test extends JFrame {
 	
 	public static void main(String[] args){
 		Test t = new Test();
+
+		/*try {
+
+			Connection con = null;
+
+
+
+			con = DriverManager.getConnection("jdbc:mysql://localhost/?serverTimezone=UTC","root", "1234");
+
+
+
+			java.sql.Statement st = null;
+
+			ResultSet rs = null;
+
+			st = con.createStatement();
+
+			rs = st.executeQuery("SHOW DATABASES");
+
+
+
+			if (st.execute("SHOW DATABASES")) {
+
+				rs = st.getResultSet();
+			}
+
+
+
+			while (rs.next()) {
+
+				String str = rs.getNString(1);
+
+				System.out.println(str);
+			}
+
+		} catch (SQLException sqex) {
+
+			System.out.println("SQLException: " + sqex.getMessage());
+			System.out.println("SQLState: " + sqex.getSQLState());
+
+		}*/
+
+
 	}
+
+
 }
