@@ -131,7 +131,6 @@ public class Test extends JFrame {
 				korField.setText(String.valueOf(jTable.getValueAt(row, 1)));
 				engField.setText(String.valueOf(jTable.getValueAt(row, 2)));
 				mathField.setText(String.valueOf(jTable.getValueAt(row, 3)));
-					
 			}
 
 			@Override
