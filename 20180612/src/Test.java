@@ -15,7 +15,8 @@ import javax.swing.table.*;
 
 public class Test extends JFrame {
 	int row = 0;
-	
+	int[] score = new int[30];
+	int[] rank = new int[30];
 	//{"이름","국어점수","영어점수","수학점수","총점","평균"}
 	 
 	
@@ -28,12 +29,11 @@ public class Test extends JFrame {
 		 columnNames.addElement("수학점수");
 		 columnNames.addElement("총합");
 		 columnNames.addElement("평균");
-		
+		 columnNames.addElement("등수");
 		 
 		ScoreDAO scoreDAO = new ScoreDAO();
 		ScoreDTO scoreDTO = new ScoreDTO();
-		
-		scoreDAO.getConn();
+	
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("성적 관리프로그램");
@@ -108,6 +108,17 @@ public class Test extends JFrame {
 				mathField.setText("");
 				Vector res = scoreDAO.getScore();
 				defaultTableModel.setDataVector(res, columnNames);
+				/*for(int i = 0; i < defaultTableModel.getRowCount(); i++){
+					 rank[i] = 1;
+					 score[i] = (int) defaultTableModel.getValueAt(i, 6);
+					  for (int j = 1; j < defaultTableModel.getRowCount(); j++) {                              
+			                if(score[i]<score[j]) {   
+			                    rank[i]++;
+			                    defaultTableModel.setValueAt(rank[i], i, 7);
+			                    defaultTableModel.setDataVector(res, columnNames);
+			                }  
+					  }
+				}*/
  				defaultTableModel.fireTableDataChanged();
  				jTable.setModel(defaultTableModel);
  			}
@@ -201,7 +212,6 @@ public class Test extends JFrame {
 				defaultTableModel.setDataVector(res, columnNames);
 				defaultTableModel.fireTableDataChanged();
 				jTable.setModel(defaultTableModel);
-				
 			}
  		});
 
