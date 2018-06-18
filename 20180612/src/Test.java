@@ -108,17 +108,17 @@ public class Test extends JFrame {
 				mathField.setText("");
 				Vector res = scoreDAO.getScore();
 				defaultTableModel.setDataVector(res, columnNames);
-				/*for(int i = 0; i < defaultTableModel.getRowCount(); i++){
+				for(int i = 0; i < defaultTableModel.getRowCount(); i++){
 					 rank[i] = 1;
-					 score[i] = (int) defaultTableModel.getValueAt(i, 6);
+					 score[i] = (int) defaultTableModel.getValueAt(i, 5);
 					  for (int j = 1; j < defaultTableModel.getRowCount(); j++) {                              
 			                if(score[i]<score[j]) {   
 			                    rank[i]++;
-			                    defaultTableModel.setValueAt(rank[i], i, 7);
+			                    defaultTableModel.setValueAt(rank[i], 1, 6);
 			                    defaultTableModel.setDataVector(res, columnNames);
 			                }  
 					  }
-				}*/
+				}
  				defaultTableModel.fireTableDataChanged();
  				jTable.setModel(defaultTableModel);
  			}

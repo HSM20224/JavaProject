@@ -1,15 +1,8 @@
 
 public class ScoreDTO {
 	private String name;
-	private int kor, eng, math, sum, average,count;
-
-	public int getCount() {
-		return count;
-	}
-
-	public void setCount(int count) {
-		this.count = count;
-	}
+	private int kor, eng, math, sum, average;
+	int[] rank = new int[30];
 
 	public String getName() {
 		return name;
