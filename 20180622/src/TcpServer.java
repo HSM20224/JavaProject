@@ -12,7 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-
+ 
 class FrServer extends JFrame {
 	JTextArea ta;
 	JTextField tf;

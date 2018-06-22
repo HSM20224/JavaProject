@@ -74,7 +74,7 @@ public class TestClient2 {
 					}
 					ta.append("SENT : "+str+"\n" );
 					tf.setText("");
-				}
+				} 
 				
 			});
 			
