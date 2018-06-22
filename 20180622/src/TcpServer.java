@@ -12,7 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
- 
+
 class FrServer extends JFrame {
 	JTextArea ta;
 	JTextField tf;
@@ -54,7 +54,7 @@ public class TcpServer {
 		ServerSocket ss = null;
 		Socket s = null;
 		try {
-			ss = new ServerSocket(7);
+			ss = new ServerSocket(7777);
 			System.out.println("서버가 시작됨");
 
 			while (true) {
@@ -81,6 +81,7 @@ public class TcpServer {
 
 			} catch (IOException e) {
 				System.out.println("sendToall 입출력에러");
+				System.out.println(e.getMessage());
 			}
 		}
 	}
@@ -106,8 +107,8 @@ public class TcpServer {
 			try {
 				name = in.readUTF();
 				sendToAll("#" + name + "님이 들어오셨습니다. ");
-
 				clients.put(name, out);
+
 				System.out.println("현재 접속자 수는" + clients.size() + "입니다.");
 				System.out.println("현재 접속자 목록 : ");
 
