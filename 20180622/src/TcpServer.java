@@ -38,6 +38,35 @@ class FrServer extends JFrame {
 
 public class TcpServer {
 	HashMap clients;
+	String name;
+	String contents;
+	String msgs = "aa";
+
+	public String getMsgs() {
+		return msgs;
+	}
+
+	public void setMsgs(String msgs) {
+		this.msgs = msgs;
+	}
+
+	DAO dao = new DAO();
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getContents() {
+		return contents;
+	}
+
+	public void setContents(String contents) {
+		this.contents = contents;
+	}
 
 	public TcpServer() {
 		clients = new HashMap();
@@ -73,17 +102,25 @@ public class TcpServer {
 
 	void sendToAll(String msg) {
 		Iterator it = clients.keySet().iterator();
-
+		String[] arr = new String[2];
+		
 		while (it.hasNext()) {
+			if (msg.contains(":")){
+				System.out.println("검사완료");
+				int idx = msg.indexOf(":");
+				name = msg.substring(0, idx);
+				contents = msg.substring(idx+2);
+			}
 			try {
 				DataOutputStream out = (DataOutputStream) clients.get(it.next());
 				out.writeUTF(msg);
-
+				dao.insertChat(this);
 			} catch (IOException e) {
 				System.out.println("sendToall 입출력에러");
 				System.out.println(e.getMessage());
 			}
 		}
+			
 	}
 
 	class ServerReceiver extends Thread {
@@ -125,5 +162,6 @@ public class TcpServer {
 			}
 		}
 
+		
 	}
 }

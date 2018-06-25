@@ -9,6 +9,7 @@ import java.io.OutputStream;
 import java.net.Socket;
 import java.util.Scanner;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
@@ -71,15 +72,17 @@ public class TcpClient {
 			ta = new JTextArea(25, 40);
 			ta.setAutoscrolls(true);
 			ta.setEditable(false);
+			JButton btn = new JButton("대화내용 불러오기");
 			JScrollPane scroll = new JScrollPane(ta); 
 		    scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 			tf = new JTextField(25);
 			DefaultCaret caret = (DefaultCaret)ta.getCaret();
 			caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
-
-			add(label, BorderLayout.NORTH);
+			
+			add(btn, BorderLayout.NORTH);
 			add(scroll, BorderLayout.CENTER);
 			add(tf, BorderLayout.SOUTH);
+			
 			setVisible(true);
 
 			tf.addActionListener(new ActionListener() {
@@ -98,6 +101,16 @@ public class TcpClient {
 
 				}
 
+			});
+			
+			btn.addActionListener(new ActionListener() {
+				DAO dao = new DAO();
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					// TODO Auto-generated method stub
+					ta.append(dao.getChat());
+				}
+				
 			});
 		}
 
@@ -121,7 +134,7 @@ public class TcpClient {
 			while(in != null) {
 				try {
 					String s = in.readUTF();
-					System.out.println(s);
+					//System.out.println(s);
 					ta.append(s + "\n");
 				} catch(IOException e) {
 					e.printStackTrace();
