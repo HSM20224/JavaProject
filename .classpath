@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="20180312/src"/>
+	<classpathentry kind="src" path="20180313/src"/>
+	<classpathentry kind="src" path="20180315/src"/>
+	<classpathentry kind="src" path="20180316/src"/>
+	<classpathentry kind="src" path="20180319/src"/>
+	<classpathentry kind="src" path="20180320/src"/>
+	<classpathentry kind="src" path="20180323/src"/>
+	<classpathentry kind="src" path="20180326/src"/>
+	<classpathentry kind="src" path="20180327/src"/>
+	<classpathentry kind="src" path="20180413/src"/>
+	<classpathentry kind="src" path="20180611/src"/>
+	<classpathentry kind="src" path="20180612/src"/>
+	<classpathentry kind="src" path="20180620/src"/>
+	<classpathentry kind="src" path="20180622/src"/>
+	<classpathentry kind="src" path="Juso/src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
