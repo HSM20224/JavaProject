@@ -72,8 +72,8 @@ public class DAO {
 			while (rs.next()) {
 				String name = rs.getString("name");
 				String contents = rs.getString("con");
-				
-				String msg = name+ " : " + contents;
+
+				String msg = name + " : " + contents;
 				msgs += msg + "\n";
 			} // while
 		} catch (Exception e) {
@@ -101,6 +101,6 @@ public class DAO {
 				} // con try - catch
 			} // con if
 		}
-		return msgs+"\n****** 이전 대화 ******";// try - catch - finally
+		return msgs + "\n****** 이전 대화 ******";// try - catch - finally
 	} // getChat : 채팅내용을 가져오는 메서드
 }

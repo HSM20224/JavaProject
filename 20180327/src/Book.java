@@ -45,10 +45,11 @@ public class Book {
 	public void setGenre(String genre) {
 		this.genre = genre;
 	}
-	
-	public Book(){}
-	
-	public Book(String title, String author, String genre, String publisher, int page){
+
+	public Book() {
+	}
+
+	public Book(String title, String author, String genre, String publisher, int page) {
 		this.title = title;
 		this.author = author;
 		this.genre = genre;
@@ -57,5 +58,3 @@ public class Book {
 	}
 
 }
-
-

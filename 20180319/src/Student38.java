@@ -17,8 +17,8 @@ public class Student38 {
 	}
 
 	@Override
-	public String toString(){
-		return "Student [number =" +number+ ", name ="+name+", age ="+age+"]";
+	public String toString() {
+		return "Student [number =" + number + ", name =" + name + ", age =" + age + "]";
 	}
 
 }

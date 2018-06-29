@@ -103,13 +103,13 @@ public class TcpServer {
 	void sendToAll(String msg) {
 		Iterator it = clients.keySet().iterator();
 		String[] arr = new String[2];
-		
+
 		while (it.hasNext()) {
-			if (msg.contains(":")){
+			if (msg.contains(":")) {
 				System.out.println("검사완료");
 				int idx = msg.indexOf(":");
 				name = msg.substring(0, idx);
-				contents = msg.substring(idx+2);
+				contents = msg.substring(idx + 2);
 			}
 			try {
 				DataOutputStream out = (DataOutputStream) clients.get(it.next());
@@ -120,7 +120,7 @@ public class TcpServer {
 				System.out.println(e.getMessage());
 			}
 		}
-			
+
 	}
 
 	class ServerReceiver extends Thread {
@@ -162,6 +162,5 @@ public class TcpServer {
 			}
 		}
 
-		
 	}
 }

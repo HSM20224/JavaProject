@@ -6,12 +6,12 @@ public class TelevisionTest13 {
 		myTv.volume = 9;
 		myTv.onOff = true;
 		myTv.print();
-		
+
 		Television13 yourTv = new Television13();
 		yourTv.channel = 9;
 		yourTv.volume = 12;
 		yourTv.onOff = true;
 		yourTv.print();
-		
+
 	}
 }

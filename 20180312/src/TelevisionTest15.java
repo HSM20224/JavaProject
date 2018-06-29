@@ -6,6 +6,6 @@ public class TelevisionTest15 {
 		myTv.volume = 9;
 		myTv.onOff = true;
 		int ch = myTv.getChannel();
-		System.out.println("현재 채널은 "+ ch + "입니다.");
+		System.out.println("현재 채널은 " + ch + "입니다.");
 	}
 }

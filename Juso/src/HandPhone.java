@@ -44,7 +44,7 @@ public class HandPhone {
 			case "4":
 				return;
 			default:
-				System.out.println("\n 잘못 입력했어요. 다시 선택하세요.\n");
+				System.out.println("\n 잘못 입력하셨습니다. 다시 선택하세요. \n");
 			}
 		}
 	}
@@ -104,13 +104,13 @@ public class HandPhone {
 	}
 
 	static void delete_juso() {
-		
+
 		int position;
 		Scanner sc = new Scanner(System.in);
 		System.out.println("삭제할 행 번호는 ?");
-		
-		position = sc.nextInt()-1;
-		
+
+		position = sc.nextInt() - 1;
+
 		File file = new File(HandPhone.fname);
 		String dummy = "";
 		try {

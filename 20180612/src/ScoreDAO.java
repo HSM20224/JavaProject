@@ -18,7 +18,7 @@ public class ScoreDAO {
 		try {
 			Class.forName(DRIVER);
 			con = DriverManager.getConnection(URL, USER, PASS);
-			//this.getCount();
+			// this.getCount();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} // try - catch
@@ -183,25 +183,16 @@ public class ScoreDAO {
 		} // try - catch - finally
 		return result;
 	} // deleteScore : 한 레코드를 삭제하는 메서드, 성공 여부를 int형 result 를 반환한다.
-	/*public void getCount(){
-		Connection con = null;
-		Statement stmt = null;
-		ResultSet rs = null;
-		try{
-			con = getConn();
-			String sql = "select count(*) from score";
-			stmt = con.createStatement();
-			rs = stmt.executeQuery(sql);
-			if(rs.next()) {
-				rowCount = rs.getInt(1);
-				ScoreDTO dto = new ScoreDTO();
-				dto.setCount(rowCount);
-				System.out.println(dto.getCount());
-		    }
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		
-	}*/
+	/*
+	 * public void getCount(){ Connection con = null; Statement stmt = null;
+	 * ResultSet rs = null; try{ con = getConn(); String sql =
+	 * "select count(*) from score"; stmt = con.createStatement(); rs =
+	 * stmt.executeQuery(sql); if(rs.next()) { rowCount = rs.getInt(1); ScoreDTO
+	 * dto = new ScoreDTO(); dto.setCount(rowCount);
+	 * System.out.println(dto.getCount()); } } catch (Exception e) {
+	 * e.printStackTrace(); }
+	 * 
+	 * 
+	 * }
+	 */
 } // ScoreDAO : Databse 처리

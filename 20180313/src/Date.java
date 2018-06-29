@@ -4,8 +4,8 @@ public class Date {
 	int month;
 	int day;
 	String month2;
-	
-	void print2(){
-		System.out.println(month2 +" "+day+", " +year);
+
+	void print2() {
+		System.out.println(month2 + " " + day + ", " + year);
 	}
 }

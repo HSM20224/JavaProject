@@ -1,6 +1,7 @@
 import java.util.Scanner;
+
 public class StirngTest {
-	public static void main(String a[]){
+	public static void main(String a[]) {
 		String str;
 		Scanner sc = new Scanner(System.in);
 		while (true) {
